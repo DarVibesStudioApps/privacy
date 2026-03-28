@@ -448,8 +448,14 @@ function show(id) {
   document.querySelectorAll('.tab').forEach(b => b.classList.remove('on'));
   document.getElementById(id).classList.add('on');
   document.querySelectorAll('.tab')[id === 'privacy' ? 0 : 1].classList.add('on');
+  window.location.hash = id;
   document.querySelector('nav').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+// ── OPEN TAB FROM URL HASH ──
+(function() {
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'privacy' || hash === 'terms') show(hash);
+})();
 
 // ── PIXEL ART SCENE ──
 (function () {
